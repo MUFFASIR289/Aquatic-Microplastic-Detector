@@ -1,0 +1,204 @@
+{% extends 'users/userbase.html' %}
+{% load static %}
+
+{% block contents %}
+<style>
+    /* Container for the upload success page */
+    .result-container {
+        max-width: 1200px;
+        background: rgba(106, 104, 233, 0.95);
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        margin: 50px auto;
+        animation: fadeInUp 1s ease-out;
+    }
+
+    /* Heading style */
+    .result-heading {
+        font-size: 2.5rem;
+        text-align: center;
+        color: white;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin-bottom: 30px;
+    }
+
+    /* Error message styling */
+    .error-message {
+        color: #ff6b6b;
+        font-size: 1.2rem;
+        text-align: center;
+        margin-bottom: 20px;
+        padding: 10px;
+        background: rgba(255, 200, 200, 0.8);
+        border-radius: 10px;
+    }
+
+    /* Image gallery styling */
+    .image-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin: 30px 0;
+    }
+
+    .image-item {
+        text-align: center;
+    }
+
+    /* Default image styling */
+    .image-item img {
+        width: 100%;
+        max-width: 300px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    /* Larger styling for key images */
+    .image-item.featured img {
+        max-width: 500px;
+    }
+
+    .image-item img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .image-label {
+        font-size: 1.1rem;
+        color: #333;
+        margin-top: 10px;
+        font-weight: 500;
+    }
+
+    /* Results section styling */
+    .results-section {
+        margin: 30px 0;
+    }
+
+    .results-heading {
+        font-size: 1.8rem;
+        color: #333;
+        margin-bottom: 15px;
+        text-align: center;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    .results-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .results-list li {
+        background: rgba(255, 255, 255, 0.8);
+        padding: 10px 15px;
+        margin: 5px 0;
+        border-radius: 8px;
+        color: #666;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+    }
+
+    .results-list li:hover {
+        background: rgba(102, 126, 234, 0.1);
+        transform: translateX(5px);
+    }
+
+    /* Animation */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+        .result-container {
+            max-width: 90%;
+            padding: 20px;
+        }
+        .result-heading {
+            font-size: 2rem;
+        }
+        .results-heading {
+            font-size: 1.5rem;
+        }
+        .image-gallery {
+            grid-template-columns: 1fr;
+        }
+        .image-item.featured img {
+            max-width: 100%;
+        }
+    }
+</style>
+
+<div class="main-content">
+    <div class="result-container">
+        <h1 class="result-heading">Image Uploaded Successfully!</h1>
+        
+        {% if error_message %}
+            <p class="error-message">Error: {{ error_message }}</p>
+        {% else %}
+            <div class="image-gallery">
+                <div class="image-item featured">
+                    <img src="{{ uploaded_file_url }}" alt="Uploaded Image">
+                    <div class="image-label">Uploaded Image</div>
+                </div>
+                {% if detected_image_url %}
+                    <div class="image-item featured">
+                        <img src="{{ detected_image_url }}" alt="Detected Image">
+                        <div class="image-label">Detected Image</div>
+                    </div>
+                {% endif %}
+                {% if hologram_image_url %}
+                    <div class="image-item">
+                        <img src="{{ hologram_image_url }}" alt="Hologram Image">
+                        <div class="image-label">Hologram Image</div>
+                    </div>
+                {% endif %}
+                {% if reconstruction_image_url %}
+                    <div class="image-item">
+                        <img src="{{ reconstruction_image_url }}" alt="Reconstruction Image">
+                        <div class="image-label">Reconstruction Image</div>
+                    </div>
+                {% endif %}
+                {% if segmentation_image_url %}
+                    <div class="image-item">
+                        <img src="{{ segmentation_image_url }}" alt="Segmentation Image">
+                        <div class="image-label">Segmentation Image</div>
+                    </div>
+                {% endif %}
+            </div>
+
+            {% if label_counts %}
+                <div class="results-section">
+                    <h2 class="results-heading">Detection Results</h2>
+                    <ul class="results-list">
+                        {% for label, count in label_counts.items %}
+                            <li>{{ label }}: {{ count }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            {% if boxes %}
+                <div class="results-section">
+                    <h2 class="results-heading">Bounding Boxes</h2>
+                    <ul class="results-list">
+                        {% for box in boxes %}
+                            <li>{{ box }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

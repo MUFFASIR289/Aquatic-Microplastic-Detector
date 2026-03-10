@@ -1,0 +1,172 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microplastics: The Hidden Pollution</title>
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: #333;
+        }
+
+        /* Header Styling */
+        header {
+            background: linear-gradient(135deg, rgba(30, 60, 114, 0.9) 0%, rgba(42, 82, 152, 0.9) 100%);
+            color: #fff;
+            padding: 25px 0;
+            text-align: center;
+            border-bottom: 4px solid #fff;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        header h1 span {
+            font-size: 1.1rem;
+            display: block;
+            font-weight: 400;
+            margin-top: 8px;
+            opacity: 0.9;
+        }
+
+        /* Navigation Styling */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid #ccc;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 12px 0;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Main Content Styling */
+        main {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        /* Footer Styling */
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9rem;
+            background: linear-gradient(135deg, rgba(30, 60, 114, 0.8) 0%, rgba(42, 82, 152, 0.8) 100%);
+            color: #fff;
+            margin-top: 50px;
+            border-top: 1px solid #fff;
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            header h1 span {
+                font-size: 0.9rem;
+            }
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            nav ul li {
+                margin: 10px 0;
+            }
+            nav ul li a {
+                padding: 8px 15px;
+                font-size: 1rem;
+            }
+            main {
+                max-width: 90%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Microplastics<span>: The Hidden Pollution </span></h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="{% url 'adminhome' %}" class="{% if request.resolver_match.url_name == 'adminhome' %}active{% endif %}">Dashboard</a></li>
+            <li><a href="{% url 'RegisterUsersView' %}" class="{% if request.resolver_match.url_name == 'RegisterUsersView' %}active{% endif %}">User Records</a></li>
+            <li><a href="{% url 'index' %}" class="{% if request.resolver_match.url_name == 'index' %}active{% endif %}">Logout</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        {% block contents %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Microplastics Admin Panel. All rights reserved.</p>
+    </footer>
+</body>
+</html>

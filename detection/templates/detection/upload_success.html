@@ -1,0 +1,41 @@
+<html>
+<head>
+    <title>Upload Success</title>
+</head>
+<body>
+    <h1>Image Uploaded Successfully!</h1>
+    {% if error_message %}
+        <p style="color:red;">Error: {{ error_message }}</p>
+    {% else %}
+        <img src="{{ uploaded_file_url }}" alt="Uploaded Image" style="width: 300px;">
+        {% if detected_image_url %}
+            <img src="{{ detected_image_url }}" alt="Detected Image" style="width: 300px;">
+        {% endif %}
+        {% if label_counts %}
+            <h2>Detection Results:</h2>
+            <ul>
+                {% for label, count in label_counts.items %}
+                    <li>{{ label }}: {{ count }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% if hologram_image_url %}
+            <img src="{{ hologram_image_url }}" alt="Hologram Image" style="width: 300px;">
+        {% endif %}
+        {% if reconstruction_image_url %}
+            <img src="{{ reconstruction_image_url }}" alt="Reconstruction Image" style="width: 300px;">
+        {% endif %}
+        {% if segmentation_image_url %}
+            <img src="{{ segmentation_image_url }}" alt="Segmentation Image" style="width: 300px;">
+        {% endif %}
+        {% if boxes %}
+            <h2>Bounding Boxes:</h2>
+            <ul>
+                {% for box in boxes %}
+                    <li>{{ box }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endif %}
+</body>
+</html>

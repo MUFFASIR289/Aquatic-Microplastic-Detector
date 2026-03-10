@@ -1,0 +1,41 @@
+{% extends 'admins/adminbase.html' %}
+{% load static %}
+{% block contents %}
+
+<style>
+    .admin-home-container {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 50px;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .admin-home-container h2 {
+        font-size: 2.2rem;
+        color: #295b8d;
+        margin-bottom: 20px;
+    }
+
+    .admin-home-container p {
+        font-size: 1.1rem;
+        color: #444;
+        line-height: 1.8;
+        max-width: 800px;
+        margin: 0 auto 15px;
+    }
+</style>
+
+<div class="admin-home-container">
+    <h2>Welcome to Microplastics: The Hidden Pollution detection</h2>
+    <p>
+        As an administrator of SnowCast, you play a critical role in managing real-time snowfall data,
+        reviewing forecast results, and ensuring smooth operation of the snow prediction system.
+    </p>
+    <p>
+        From monitoring user submissions to managing historical snow pattern records,
+        use the tools available in the navigation bar to efficiently control the backend of this powerful forecasting platform.
+    </p>
+</div>
+
+{% endblock %}
