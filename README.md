@@ -6,6 +6,19 @@ A field-deployable imaging system for detecting and classifying microplastics in
 
 This project implements a Django-based web application that leverages YOLOv8 deep learning models to automatically detect and classify microplastics in water samples. The system is designed for easy deployment in the field and provides real-time detection with multiple image processing visualizations.
 
+## Team
+----------------------------------
+| Name           | Roll Number   |
+|----------------|---------------|
+| Muffasir Mehdi | 160922748038  |
+| Mohd. Fazal    | 160922748051  |
+| Shaik Arif     | 160922748003  |
+| Mohd. Najmee   | 160922748035  |
+----------------------------------
+Project Guide : 
+Co-Guide / HoD : Dr. Abdul Rasool MD, Associate Professor & Head of Department CSE(AIML)
+Institute: Lords Institute of Engineering and Techno
+
 ## Features
 
 - **Real-time Microplastic Detection**: YOLOv8 model-based detection with high accuracy
