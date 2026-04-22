@@ -1,0 +1,9 @@
+Django==4.2
+ultralytics==8.4.21
+torch==2.10.0
+torchvision==0.25.0
+opencv-python==4.13.0.92
+numpy==2.4.3
+Pillow==12.1.1
+requests
+PyYAML
